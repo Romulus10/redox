@@ -1,9 +1,7 @@
 [package]
-name = "ps2d"
+name = "udpd"
 version = "0.1.0"
 
 [dependencies]
-bitflags = "*"
-io = { path = "../../crates/io/" }
-orbclient = "0.1"
+resource_scheme = { path = "../../crates/resource_scheme/" }
 syscall = { path = "../../syscall/" }
