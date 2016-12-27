@@ -1,6 +1,9 @@
 [submodule "rust"]
 	path = rust
 	url = https://github.com/redox-os/rust.git
+[submodule "kernel"]
+	path = kernel
+	url = https://github.com/redox-os/kernel.git
 [submodule "ion"]
 	path = programs/ion
 	url = https://github.com/redox-os/ion.git
