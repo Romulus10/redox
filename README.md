@@ -12,7 +12,7 @@ Please make sure you use the **latest nightly** of `rustc` before building (for 
 
 [![Travis Build Status](https://travis-ci.org/redox-os/redox.svg?branch=master)](https://travis-ci.org/redox-os/redox)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
-![Rust Version](https://img.shields.io/badge/rust-1.15.0--nightly%20(71c06a56a%202016--12--18)-lightgrey.svg)
+![Rust Version](https://img.shields.io/badge/rust-1.16.0--nightly%20(4ecc85beb%202016--12--28)-lightgrey.svg)
 
 ## Contents
 
@@ -40,14 +40,6 @@ The ecosystem and software Redox OS provides is listed below.
 
 | Name (lexicographic order)                                                  | Maintainer
 |-----------------------------------------------------------------------------|---------------------------
-| [Ion (shell)](https://github.com/redox-os/ion)                              | [**@skylerberg**](https://github.com/skylerberg) & [**@jackpot51**](https://github.com/jackpot51)
-| [RANSID](https://github.com/redox-os/ransid)                                | [**@jackpot51**](https://github.com/jackpot51)
-| [Sodium (editor)](https://github.com/redox-os/sodium)                       | [**@ticki**](https://github.com/ticki)
-| [Standard library](https://github.com/redox-os/libstd)                      | [**@jackpot51**](https://github.com/jackpot51)
-| [TFS (filesystem)](https://github.com/ticki/tfs)                            | [**@ticki**](https://github.com/ticki)
-| [The Redox book](https://github.com/redox-os/book)                          | [**@ticki**](https://github.com/ticki)
-| [The old kernel](https://github.com/redox-os/old)                           | abandoned
-| [ZFS](https://github.com/redox-os/zfs)                                      | abandoned, superseded by TFS
 | [acid tests](https://github.com/redox-os/acid)                              | [**@jackpot51**](https://github.com/jackpot51) (co.: [**@ticki**](https://github.com/ticki), [**@nilset](https://github.com/nilset))
 | [binutils](https://github.com/redox-os/binutils)                            | [**@ticki**](https://github.com/ticki)
 | [bots (other internal bots)](https://github.com/redox-os/bots)              | [**@ticki**](https://github.com/ticki)
@@ -55,6 +47,7 @@ The ecosystem and software Redox OS provides is listed below.
 | [coreutils](https://github.com/redox-os/coreutils)                          | [**@ticki**](https://github.com/ticki) (co.: [**@stratact**](https://github.com/stratact))
 | [extrautils](https://github.com/redox-os/extrautils)                        | [**@ticki**](https://github.com/ticki)
 | [games](https://github.com/redox-os/games)                                  | [**@ticki**](https://github.com/ticki)
+| [Ion (shell)](https://github.com/redox-os/ion)                              | [**@skylerberg**](https://github.com/skylerberg) & [**@jackpot51**](https://github.com/jackpot51)
 | [kernel](https://github.com/redox-os/kernel)                                | [**@jackpot51**](https://github.com/jackpot51)
 | [libextra](https://github.com/redox-os/libextra)                            | [**@ticki**](https://github.com/ticki)
 | [libpager](https://github.com/redox-os/libpager)                            | [**@ticki**](https://github.com/ticki)
@@ -68,9 +61,16 @@ The ecosystem and software Redox OS provides is listed below.
 | [pkgutils (current package manager)](https://github.com/redox-os/pkgutils)  | [**@jackpot51**](https://github.com/jackpot51)
 | [playbot (internal REPL bot)](https://github.com/redox-os/playbot)          | [**@ticki**](https://github.com/ticki)
 | [ralloc](https://github.com/redox-os/ralloc)                                | [**@ticki**](https://github.com/ticki)
+| [RANSID](https://github.com/redox-os/ransid)                                | [**@jackpot51**](https://github.com/jackpot51)
 | [redoxfs (old filesystem)](https://github.com/redox-os/redoxfs)             | [**@jackpot51**](https://github.com/jackpot51)
 | [syscall](https://github.com/redox-os/syscall)                              | [**@jackpot51**](https://github.com/jackpot51)
+| [Sodium (editor)](https://github.com/redox-os/sodium)                       | [**@ticki**](https://github.com/ticki)
+| [Standard library](https://github.com/redox-os/libstd)                      | [**@jackpot51**](https://github.com/jackpot51)
 | [userutils](https://github.com/redox-os/userutils)                          | [**@jackpot51**](https://github.com/jackpot51)
+| [TFS (filesystem)](https://github.com/ticki/tfs)                            | [**@ticki**](https://github.com/ticki)
+| [The Redox book](https://github.com/redox-os/book)                          | [**@ticki**](https://github.com/ticki)
+| [The old kernel](https://github.com/redox-os/old)                           | **abandoned**
+| [ZFS](https://github.com/redox-os/zfs)                                      | **abandoned, superseded by TFS**
 
 ## <a name="compile-help"> Help! Redox won't compile! </a>
 

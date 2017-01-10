@@ -4,7 +4,7 @@
 # This function is simply a banner to introduce the script
 ##########################################################
 banner()
-{	
+{
 	echo "|------------------------------------------|"
 	echo "|----- Welcome to the redox bootstrap -----|"
 	echo "|------------------------------------------|"
@@ -53,7 +53,7 @@ install_brew_cask_pkg()
 ###############################################################################
 # This function checks which of the supported package managers
 # is available on the OSX Host.
-# If a support package manager is found, it delegates the installing work to
+# If a supported package manager is found, it delegates the installing work to
 # the relevant function.
 # Otherwise this function will exit this script with an error.
 ###############################################################################
@@ -66,7 +66,7 @@ osx()
     elif [ ! -z "$(which port)" ]; then
         osx_macports $@
     else
-        echo "Please install either Hombrew or MacPorts, if you wish to use this script"
+        echo "Please install either Homebrew or MacPorts, if you wish to use this script"
         echo "Re-run this script once you installed one of those package managers"
         echo "Will not install, now exiting..."
         exit 1
@@ -101,7 +101,7 @@ osx_macports()
 }
 
 ###############################################################################
-# This function takes care of installing all dependencies using Hombrew
+# This function takes care of installing all dependencies using Homebrew
 # for building redox on Mac OSX
 # @params:    $1 the emulator to install, virtualbox or qemu
 ###############################################################################
@@ -129,8 +129,7 @@ osx_homebrew()
     install_brew_pkg "pkg-config"
     install_brew_cask_pkg "osxfuse"
 
-    install_brew_pkg "glendc/gcc_cross_compilers/x64-elf-binutils" "x86_64-elf-gcc"
-    install_brew_pkg "glendc/gcc_cross_compilers/x64-elf-gcc" "x86_64-elf-gcc"
+    install_brew_pkg "redox-os/gcc_cross_compilers/x86_64-elf-gcc"
 }
 
 ###############################################################################
@@ -171,7 +170,7 @@ archLinux()
 # This function takes care of installing all dependencies for building redox on
 # debian based linux
 # @params:	$1 the emulator to install, virtualbox or qemu
-# 		$2 the package manager to use	
+# 		$2 the package manager to use
 ###############################################################################
 ubuntu()
 {
@@ -241,7 +240,7 @@ fedora()
 ###############################################################################
 suse()
 {
-	echo "Detected a suse"
+	echo "Detected SUSE Linux"
 	if [ -z "$(which git)" ]; then
 		echo "Installing git..."
 		zypper install git
@@ -348,7 +347,7 @@ usage()
 	echo "   -e [emulator]  Install specific emulator, virtualbox or qemu"
 	echo "   -p [package    Choose an Ubuntu package manager, apt-fast or"
 	echo "       manager]   aptitude"
-	echo "   -d             Only install the dependencies, skip boot step" 
+	echo "   -d             Only install the dependencies, skip boot step"
 	echo "EXAMPLES:"
 	echo
 	echo "./bootstrap.sh -b buddy -e qemu"
@@ -357,7 +356,7 @@ usage()
 
 ####################################################################################
 # This function takes care of everything associated to rust, and the version manager
-# That controls it, it can install rustup and uninstall multirust as well as making 
+# That controls it, it can install rustup and uninstall multirust as well as making
 # sure that the correct version of rustc is selected by rustup
 ####################################################################################
 rustInstall() {
@@ -370,7 +369,7 @@ rustInstall() {
 		printf "Uninstall multirust (y/N):"
 		read multirust
 		if echo "$multirust" | grep -iq "^y" ;then
-			sudo /usr/local/lib/rustlib/uninstall.sh	
+			sudo /usr/local/lib/rustlib/uninstall.sh
 		else
 			echo "Please manually uninstall multirust and any other versions of rust, then re-run bootstrap."
 			exit
@@ -378,10 +377,10 @@ rustInstall() {
 	else
 		echo "Old multirust not installed, you are good to go."
 	fi
-	# If rustup is not installed we should offer to install it for them	
+	# If rustup is not installed we should offer to install it for them
 	if [ -z "$(which rustup)" ]; then
 		echo "You do not have rustup installed."
-		echo "We HIGHLY reccomend using rustup."
+		echo "We HIGHLY recommend using rustup."
 		echo "Would you like to install it now?"
 		echo "*WARNING* this involves a 'curl | sh' style command"
 		printf "(y/N): "
@@ -389,22 +388,22 @@ rustInstall() {
 		if echo "$rustup" | grep -iq "^y" ;then
 			#install rustup
 			curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly
-			# You have to add the rustup variables to the $PATH	
+			# You have to add the rustup variables to the $PATH
 			echo "export PATH=\"\$HOME/.cargo/bin:\$PATH\"" >> ~/.bashrc
 			# source the variables so that we can execute rustup commands in the current shell
-			source ~/.cargo/env	
+			source ~/.cargo/env
 			rustup default nightly
 		else
 			echo "Rustup will not be installed!"
 		fi
-	fi	
-	# 	
+	fi
+	#
 	if [ -z "$(which rustc)" ]; then
 		echo "Rust is not installed"
 		echo "Please either run the script again, accepting rustup install"
-		echo "or install rustc nightly manually (not reccomended) via:"
+		echo "or install rustc nightly manually (not recommended) via:"
 		echo "\#curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=nightly"
-		exit 
+		exit
 	fi
 	# If the system has rustup installed then update rustc to the latest nightly
 	if hash 2>/dev/null rustup; then
@@ -415,8 +414,8 @@ rustInstall() {
 	if echo "$(rustc --version)" | grep -viq "nightly" ;then
 		echo "It appears that you have rust installed, but it"
 		echo "is not the nightly version, please either install"
-		echo "the nightly manually (not reccomended) or run this"
-		echo "script again, accepting the multirust install"
+		echo "the nightly manually (not recommended) or run this"
+		echo "script again, accepting the rustup install"
 		echo
 	else
 		echo "Your rust install looks good!"
@@ -425,7 +424,7 @@ rustInstall() {
 }
 
 ####################################################################
-# This function gets the current build status from travis and prints 
+# This function gets the current build status from travis and prints
 # a message to the user
 ####################################################################
 statusCheck() {
@@ -435,14 +434,14 @@ statusCheck() {
 			if echo "$i" | grep -iq "0" ;then
 				echo
 				echo "********************************************"
-				echo "Travis reports that the last build succeded!"
+				echo "Travis reports that the last build succeeded!"
 				echo "Looks like you are good to go!"
 				echo "********************************************"
 			elif echo "$i" | grep -iq "null" ;then
 				echo
-				echo "******************************************************************"	
+				echo "******************************************************************"
 				echo "The Travis build did not finish, this is an error with its config."
-				echo "I cannot reliably determine whether the build is succeding or not."
+				echo "I cannot reliably determine whether the build is succeeding or not."
 				echo "Consider checking for and maybe opening an issue on github"
 				echo "******************************************************************"
 			else
@@ -463,7 +462,7 @@ statusCheck() {
 boot()
 {
 	echo "Cloning github repo..."
-	git clone https://github.com/redox-os/redox.git --origin upstream --recursive	
+	git clone https://github.com/redox-os/redox.git --origin upstream --recursive
 	rustInstall
 	echo "Cleaning up..."
 	rm bootstrap.sh
@@ -511,7 +510,7 @@ banner
 if [ "Darwin" == "$(uname -s)" ]; then
 	osx "$emulator"
 else
-	# Here we will user package managers to determine which operating system the user is using	
+	# Here we will user package managers to determine which operating system the user is using
 	# Arch linux
 	if hash 2>/dev/null pacman; then
 		archLinux "$emulator"

@@ -1,37 +1,37 @@
-[package]
-name = "kernel"
-version = "0.1.0"
-
-[lib]
-name = "kernel"
-path = "kernel/lib.rs"
-crate-type = ["staticlib"]
-
-[dependencies]
-bitflags = "*"
-spin = "*"
-redox_syscall = { path = "syscall/" }
-
-[dependencies.goblin]
-git = "https://github.com/m4b/goblin.git"
-default-features = false
-features = ["elf32", "elf64"]
-
-[dev-dependencies]
-arch_test = { path = "arch/test" }
-
-[target.'cfg(target_arch = "arm")'.dependencies]
-arch_arm = { path = "arch/arm" }
-
-[target.'cfg(target_arch = "x86_64")'.dependencies]
-arch_x86_64 = { path = "arch/x86_64" }
-
-[features]
-default = []
-live = []
-
-[profile.dev]
-panic = "unwind"
-
-[profile.release]
-panic = "abort"
+[workspace]
+members = [
+    "crates/docgen",
+    "drivers/ahcid",
+    "drivers/bgad",
+    "drivers/e1000d",
+    "drivers/pcid",
+    "drivers/ps2d",
+    "drivers/rtl8168d",
+    "drivers/vesad",
+    "installer",
+    "kernel",
+    "programs/acid",
+    "programs/binutils",
+    "programs/contain",
+    "programs/coreutils",
+    "programs/extrautils",
+    "programs/games",
+    "programs/init",
+    "programs/ion",
+    "programs/netutils",
+    "programs/orbutils",
+    "programs/pkgutils",
+    "programs/smith",
+    "programs/tar",
+    "programs/userutils",
+    "schemes/ethernetd",
+    "schemes/example",
+    "schemes/ipd",
+    "schemes/orbital",
+    "schemes/ptyd",
+    "schemes/randd",
+    "schemes/redoxfs",
+    "schemes/tcpd",
+    "schemes/udpd",
+    "syscall"
+]
