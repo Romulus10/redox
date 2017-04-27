@@ -19,7 +19,6 @@ fn usage() -> ! {
 
 fn enter(root: &Path, cmd: &str, args: &[String]) {
     let names = [
-        "display",
         "pty",
         "rand",
         "tcp",
@@ -89,7 +88,7 @@ pub fn main() {
     let mut args = env::args().skip(1);
 
     if let Some(root) = args.next() {
-        let cmd = args.next().unwrap_or(env::var("SHELL").unwrap_or("sh".to_string()));
+        let cmd = args.next().unwrap_or("login".to_string());
         let args: Vec<String> = args.collect();
         enter(Path::new(&root), &cmd, &args);
     } else {
